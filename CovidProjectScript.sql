@@ -82,6 +82,25 @@ Select * , (RollingPeopleVaccinated/Population) * 100
 From PopVsVac
 Order by location, date
 
+/*
+Some rows have the continent as Null and have the continent listed in the location filed.
+*/
+
+--populate the NULL values in the continent filed from the location filed 
+	
+Update a 
+SET continent = ISNULL(a.continent, b.location)
+from CovidVaccinations a
+	join CovidVaccinations b 
+	on a.iso_code = b.iso_code
+where a.continent is null
+
+Update a 
+SET continent = ISNULL(a.continent, b.location)
+from CovidDeaths a
+	join CovidDeaths b 
+	on a.iso_code = b.iso_code
+where a.continent is null
 
 -- Temp Table
 Create Table #PercentPopulationVaccinated
