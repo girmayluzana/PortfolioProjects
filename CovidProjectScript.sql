@@ -83,10 +83,10 @@ From PopVsVac
 Order by location, date
 
 /*
-Some rows have the continent as Null and have the continent listed in the location filed.
+Some rows have the continent as Null and have the continent listed in the location field.
 */
 
---populate the NULL values in the continent filed from the location filed 
+--populate the NULL values in the continent field from the location field 
 	
 Update a 
 SET continent = ISNULL(a.continent, b.location)
